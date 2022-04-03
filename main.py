@@ -12,7 +12,7 @@ channel_list = [Bark, Mail, SMS]
 
 @app.get("/")
 async def root():
-    return list(filter(lambda c: c.active, map(lambda c: c.__name__, channel_list)))
+    return list(map(lambda c: c.__name__, filter(lambda c: c.active, channel_list)))
 
 
 @app.post("/bark")
