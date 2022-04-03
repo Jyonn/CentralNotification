@@ -1,0 +1,17 @@
+users:
+  user1:
+    type: raw
+    token: 123456abc
+    name: CentralNotification
+  user2:
+    type: md5
+    token: 2ff44dd7cfa52355abb19679539a8aca
+    name: noreply-qitian
+channels:
+  sms:
+    apikey: YOUR-YUNPIAN-APIKEY
+  mail:
+    sender: YOUR-MAIL
+    token: YOUR-MAIL-TOKEN
+    smtp: SMTP-SERVER
+    port: SMTP-PORT
