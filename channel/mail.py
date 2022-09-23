@@ -15,7 +15,7 @@ class Mail(BaseChannel):
     class Body(BaseModel):
         mail: str
         subject: Optional[str] = '中央通知'
-        appellation: Optional[str] = '你好：'
+        appellation: Optional[str] = None
         content: str
 
     sender = channels.mail.sender
@@ -23,11 +23,18 @@ class Mail(BaseChannel):
     smtp = channels.mail.smtp
     port = channels.mail.port
 
+    @staticmethod
+    def appellation_formatter(appellation):
+        default = '你好：'
+        if appellation is None or appellation == default:
+            return default
+        return '你好，{}：'.format(appellation),
+
     @classmethod
     def handler(cls, body: Body, user):
         email = EmailTemplate(
             body.subject,
-            '你好，{}：'.format(body.appellation),
+            cls.appellation_formatter(body.appellation),
             body.content,
         )
 

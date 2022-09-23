@@ -1,5 +1,6 @@
 from typing import Optional
 from urllib.parse import quote
+quote_safe = lambda x: quote(x, safe='')
 
 from pydantic import BaseModel
 
@@ -29,7 +30,7 @@ class Bark(BaseChannel):
         if not body.title:
             body.title = ''
         body.title = '【{}】{}'.format(user.name, body.title)
-        path = '%s%s/%s' % (body.uri, quote(body.title), quote(body.content))
+        path = '%s%s/%s' % (body.uri, quote_safe(body.title), quote_safe(body.content))
 
         query = dict()
         params = ['sound', 'url', 'icon', 'group']
