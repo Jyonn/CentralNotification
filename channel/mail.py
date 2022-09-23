@@ -28,7 +28,7 @@ class Mail(BaseChannel):
         default = '你好：'
         if appellation is None or appellation == default:
             return default
-        return '你好，{}：'.format(appellation),
+        return '你好，{}：'.format(appellation)
 
     @classmethod
     def handler(cls, body: Body, user):
